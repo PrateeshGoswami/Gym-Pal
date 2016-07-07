@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Gym-Pal</string>
     <string name="action_settings">Settings</string>
+    <string name="Profile_entry">Please enter your profile</string>
+    <string name="Profile_gender">Gender</string>
+    <string name="steps_count">Steps</string>
+
+
 </resources>

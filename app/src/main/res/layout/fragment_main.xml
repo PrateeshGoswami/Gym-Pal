@@ -12,6 +12,31 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/Profile_entry"
+        android:text="@string/Profile_entry"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_below="@+id/Profile_entry">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/step_count"
+        android:text="@string/steps_count"
+         />
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="10dp" />
+    <TextView
+        android:id="@+id/count"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
 
 </RelativeLayout>

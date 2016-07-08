@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Profile_entry"
-        android:text="@string/Profile_entry"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 <LinearLayout
@@ -26,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/step_count"
+        android:textSize="@dimen/title_size"
         android:text="@string/steps_count"
          />
     <Space
@@ -33,7 +33,8 @@
         android:layout_height="10dp" />
     <TextView
         android:id="@+id/count"
-
+        android:textSize="@dimen/title_size"
+        android:textColor="@color/primary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -31,6 +31,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
         View view= inflater.inflate(R.layout.fragment_main, container, false);
 
         count = (TextView) view.findViewById(R.id.count);
+        count.setText(String.valueOf(0));
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
 
@@ -59,7 +60,8 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (activityRunning){
-            count.setText(String.valueOf(event.values[0]));
+
+            count.setText(String.valueOf(Math.floor(event.values[0])));
 
         }
 

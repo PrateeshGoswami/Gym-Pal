@@ -20,6 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:id="@+id/count_layout"
     android:layout_below="@+id/Profile_entry">
 
     <TextView
@@ -38,8 +39,32 @@
         android:textColor="@color/primary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</LinearLayout>
 
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/count_layout">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/button_start"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:id="@+id/button_stop"
+        android:layout_below="@+id/button_start"
+        android:layout_marginBottom="180dp"
+        />
+    </LinearLayout>
     <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="wrap_content"
@@ -48,4 +73,6 @@
             android:layout_centerHorizontal="true"
             ads:adSize="BANNER"
             ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
+
+
 </RelativeLayout>

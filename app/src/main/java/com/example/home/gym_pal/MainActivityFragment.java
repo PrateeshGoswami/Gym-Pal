@@ -1,15 +1,18 @@
 package com.example.home.gym_pal;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,9 +35,24 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
 
         count = (TextView) view.findViewById(R.id.count);
         count.setText(String.valueOf(0));
-
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
 
+        Button button_start = (Button) view.findViewById(R.id.button_start);
+        button_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startService(new Intent(getActivity().getBaseContext(),MyServices.class));
+                Log.d("test","Start button pressed");
+            }
+        });
+        Button button_stop = (Button) view.findViewById(R.id.button_stop);
+        button_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().stopService(new Intent(getActivity().getBaseContext(),MyServices.class));
+                Log.d("test","stop button pressed");
+            }
+        });
 
         return view;
     }

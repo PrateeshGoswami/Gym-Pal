@@ -21,7 +21,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
-    BroadcastReceiver broadcastReceiver = new WifiBroadcastReceiver();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,46 +74,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
-        registerReceiver(broadcastReceiver, intentFilter);
 
         }
 
-    private class WifiBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION .equals(action)) {
-                SupplicantState state = intent.getParcelableExtra(WifiManager.EXTRA_NEW_STATE);
-                if (SupplicantState.isValidState(state)
-                        && state == SupplicantState.COMPLETED) {
-
-                    boolean connected = checkConnectedToDesiredWifi();
-                    if (connected) {
-                        Toast.makeText(context, "yay  connected to Mountainside", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        }
-
-        /** Detect you are connected to a specific network. */
-        private boolean checkConnectedToDesiredWifi() {
-            boolean connected = false;
-
-            String desiredMacAddress = "Mountainside Guest";
-
-            WifiManager wifiManager =
-                    (WifiManager)getSystemService(Context.WIFI_SERVICE);
-
-            WifiInfo wifi = wifiManager.getConnectionInfo();
-            if (wifi != null) {
-                // get current router Mac address
-                String bssid = wifi.getBSSID();
-                connected = desiredMacAddress.equals(bssid);
-            }
-
-            return connected;
-        }
-    }
 }

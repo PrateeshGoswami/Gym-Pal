@@ -5,6 +5,10 @@
     <string name="Profile_gender">Gender</string>
     <string name="steps_count">Steps since last reboot </string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="title_activity_running">RunningActivity</string>
+    <string name="start_activity_runing">Start Running</string>
+    <string name="start_service">Start Service</string>
+    <string name="stop_service">Stop Service</string>
 
 
 </resources>

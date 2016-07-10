@@ -19,7 +19,7 @@ import android.widget.Toast;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment implements SensorEventListener{
+public class MainActivityFragment extends Fragment implements SensorEventListener {
 
     private SensorManager sensorManager;
     private TextView count;
@@ -31,7 +31,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         count = (TextView) view.findViewById(R.id.count);
         count.setText(String.valueOf(0));
@@ -41,16 +41,26 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
         button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startService(new Intent(getActivity().getBaseContext(),MyServices.class));
-                Log.d("test","Start button pressed");
+                getActivity().startService(new Intent(getActivity().getBaseContext(), MyServices.class));
+                Log.d("test", "Start button pressed");
             }
         });
         Button button_stop = (Button) view.findViewById(R.id.button_stop);
         button_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().stopService(new Intent(getActivity().getBaseContext(),MyServices.class));
-                Log.d("test","stop button pressed");
+                getActivity().stopService(new Intent(getActivity().getBaseContext(), MyServices.class));
+                Log.d("test", "stop button pressed");
+            }
+        });
+
+        Button button_start_run = (Button) view.findViewById(R.id.button_start_runningActivity);
+        button_start_run.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherIntent = new Intent(getActivity(), RunningActivity.class);
+                startActivity(otherIntent);
+
             }
         });
 
@@ -63,11 +73,11 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
         activityRunning = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (countSensor != null) {
-            sensorManager.registerListener(this,countSensor,SensorManager.SENSOR_DELAY_UI);
-        }else {
-            Toast.makeText(getActivity(),"count sensor not available",Toast.LENGTH_LONG).show();
+            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+        } else {
+            Toast.makeText(getActivity(), "count sensor not available", Toast.LENGTH_LONG).show();
         }
-        }
+    }
 
     @Override
     public void onPause() {
@@ -77,7 +87,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (activityRunning){
+        if (activityRunning) {
 
             count.setText(String.valueOf(Math.floor(event.values[0])));
 

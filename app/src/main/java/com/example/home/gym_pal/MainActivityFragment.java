@@ -8,13 +8,16 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -25,6 +28,10 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     private TextView count;
     boolean activityRunning;
 
+    @Bind(R.id.count)
+    public TextView mText_count;
+    @Bind(R.id.button_start_runningActivity)
+    public Button mbutton_start_run;
     public MainActivityFragment() {
     }
 
@@ -32,39 +39,15 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-
-        count = (TextView) view.findViewById(R.id.count);
-        count.setText(String.valueOf(0));
+        ButterKnife.bind(this,view);
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-
-        Button button_start = (Button) view.findViewById(R.id.button_start);
-        button_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().startService(new Intent(getActivity().getBaseContext(), MyServices.class));
-                Log.d("test", "Start button pressed");
-            }
-        });
-        Button button_stop = (Button) view.findViewById(R.id.button_stop);
-        button_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().stopService(new Intent(getActivity().getBaseContext(), MyServices.class));
-                Log.d("test", "stop button pressed");
-            }
-        });
-
-        Button button_start_run = (Button) view.findViewById(R.id.button_start_runningActivity);
-        button_start_run.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent otherIntent = new Intent(getActivity(), RunningActivity.class);
-                startActivity(otherIntent);
-
-            }
-        });
-
         return view;
+    }
+
+    @OnClick(R.id.button_start_runningActivity)
+    public void setMbutton_start_run(){
+        Intent otherIntent = new Intent(getActivity(), RunningActivity.class);
+        startActivity(otherIntent);
     }
 
     @Override
@@ -89,7 +72,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     public void onSensorChanged(SensorEvent event) {
         if (activityRunning) {
 
-            count.setText(String.valueOf(Math.floor(event.values[0])));
+            mText_count.setText(String.valueOf(Math.floor(event.values[0])));
 
         }
 

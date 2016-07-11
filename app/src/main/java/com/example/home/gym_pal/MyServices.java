@@ -11,7 +11,6 @@ import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * @author Prateesh Goswami
@@ -29,8 +28,8 @@ public class MyServices extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         BroadcastReceiver broadcastReceiver = new WifiBroadcastReceiver();
-        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-        Log.d("test", "Start service");
+//        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+//        Log.d("test", "Start service");
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         registerReceiver(broadcastReceiver, intentFilter);
@@ -41,8 +40,8 @@ public class MyServices extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
-        Log.d("test", "stop service");
+//        Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
+//        Log.d("test", "stop service");
 
     }
 
@@ -57,12 +56,12 @@ public class MyServices extends Service {
 
                     boolean connect = checkConnectedToDesiredWifi();
                     if (connect == true) {
-                        Toast.makeText(getApplicationContext(), "connected to me,my home network", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(), "connected to me,my home network", Toast.LENGTH_LONG).show();
                         Log.d("test", "connected to wifi");
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "not connected to me,my home network", Toast.LENGTH_LONG).show();
-                        Log.d("test", " not connected to wifi");
+//                        Toast.makeText(getApplicationContext(), "not connected to me,my home network", Toast.LENGTH_LONG).show();
+//                        Log.d("test", " not connected to wifi");
 
 
                     }
@@ -83,7 +82,7 @@ public class MyServices extends Service {
 
             WifiInfo wifi = wifiManager.getConnectionInfo();
             if (wifi != null) {
-                Toast.makeText(getApplicationContext(), "connected to me", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "connected to me", Toast.LENGTH_LONG).show();
 
                 // get current router Mac address
                 String bssid = wifi.getSSID();
@@ -92,10 +91,10 @@ public class MyServices extends Service {
                 }
 //                connected = desiredMacAddress.equals(bssid);
                 Log.d("test", "connected to wifi :" + bssid);
-                Log.d("test", "state of conneted is  :" + connected);
+//                Log.d("test", "state of conneted is  :" + connected);
 
             }
-
+//
             return connected;
         }
     }

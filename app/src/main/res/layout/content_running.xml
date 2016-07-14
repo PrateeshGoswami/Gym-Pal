@@ -3,40 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    android:gravity="center"
+    android:gravity="top"
+    android:layout_marginTop="50dp"
     android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Get Location Latitude and Longitude"
-        android:textColor="@color/white"
-        android:textSize="25dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/location" />
 
     <TextView
         android:id="@+id/textview_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/white"
-        android:textSize="22dp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/textview_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
         android:textColor="@color/white"
-        android:textSize="22dp" />
+        android:textSize="22sp" />
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/text_location"
+    android:id="@+id/map_fragment"
+    tools:context=".MapsActivity"
+    android:name="com.google.android.gms.maps.SupportMapFragment" />
 
 </LinearLayout>

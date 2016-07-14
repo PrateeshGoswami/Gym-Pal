@@ -17,12 +17,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,8 +34,8 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     private LocationRequest mLocationRequest;
     private TextView latitude, longitude;
 
-    private double fusedLatitude = 0.0;
-    private double fusedLongitude = 0.0;
+    public double fusedLatitude = 0.0;
+    public double fusedLongitude = 0.0;
     private GoogleMap mMap;
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -157,7 +157,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
                     registerRequestUpdate(listener);
                 }
             }
-        }, 10000);
+        }, 1000);
     }
 
     public boolean isGoogleApiClientConnected() {
@@ -173,6 +173,10 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
 
         latitude.setText(getString(R.string.latitude_string) + " " + getFusedLatitude());
         longitude.setText(getString(R.string.longitude_string) + " " + getFusedLongitude());
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
+        mMap.animateCamera(cameraUpdate);
+
     }
 
     public void setFusedLatitude(double lat) {
@@ -195,9 +199,6 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng sydney = new LatLng(33, -111);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }
 }

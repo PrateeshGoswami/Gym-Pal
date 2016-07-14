@@ -22,7 +22,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,6 +40,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     public double fusedLatitude = 0.0;
     public double fusedLongitude = 0.0;
     private GoogleMap mMap;
+    Marker currLocationMarker;
     private LocationManager locationManager;
     private LocationListener locationListener;
     @Bind(R.id.adView)
@@ -176,6 +180,10 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
         mMap.animateCamera(cameraUpdate);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        currLocationMarker = mMap.addMarker(markerOptions);
 
     }
 

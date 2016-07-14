@@ -4,15 +4,21 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class RunningActivity extends AppCompatActivity implements LocationListener
 {
@@ -26,13 +32,27 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     private  double fusedLongitude = 0.0;
 
 
-
+    @Bind(R.id.adView)
+    public AdView mAdview;
+    @Bind(R.id.toolbar)
+    public Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_running);
         initializeViews();
+        ButterKnife.bind(this);
 
+        setSupportActionBar(mToolbar);
+        //        Adbanner
+        // Create an ad request. Check logcat output for the hashed device ID to
+        // get test ads on a physical device. e.g.
+        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdview.loadAd(adRequest);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (checkPlayServices()) {
             startFusedLocation();
             registerRequestUpdate(this);

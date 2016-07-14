@@ -1,6 +1,7 @@
 package com.example.home.gym_pal;
 
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -16,12 +17,17 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RunningActivity extends AppCompatActivity implements LocationListener
-{
+public class RunningActivity extends AppCompatActivity implements LocationListener, OnMapReadyCallback {
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
 
@@ -29,13 +35,15 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     private TextView latitude, longitude;
 
     private double fusedLatitude = 0.0;
-    private  double fusedLongitude = 0.0;
-
-
+    private double fusedLongitude = 0.0;
+    private GoogleMap mMap;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
     @Bind(R.id.adView)
     public AdView mAdview;
     @Bind(R.id.toolbar)
     public Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +65,9 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
             startFusedLocation();
             registerRequestUpdate(this);
         }
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this);
 
     }
 
@@ -128,7 +139,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     public void registerRequestUpdate(final LocationListener listener) {
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(1000); // every second
+        mLocationRequest.setInterval(10000); // every second
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -146,7 +157,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
                     registerRequestUpdate(listener);
                 }
             }
-        }, 1000);
+        }, 10000);
     }
 
     public boolean isGoogleApiClientConnected() {
@@ -160,8 +171,8 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
 
         Toast.makeText(getApplicationContext(), "NEW LOCATION RECEIVED", Toast.LENGTH_LONG).show();
 
-        latitude.setText(getString(R.string.latitude_string) +" "+ getFusedLatitude());
-        longitude.setText(getString(R.string.longitude_string) +" "+ getFusedLongitude());
+        latitude.setText(getString(R.string.latitude_string) + " " + getFusedLatitude());
+        longitude.setText(getString(R.string.longitude_string) + " " + getFusedLongitude());
     }
 
     public void setFusedLatitude(double lat) {
@@ -178,6 +189,16 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
 
     public double getFusedLongitude() {
         return fusedLongitude;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        LatLng sydney = new LatLng(33, -111);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
 }
 

@@ -172,18 +172,14 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     public void onLocationChanged(Location location) {
         setFusedLatitude(location.getLatitude());
         setFusedLongitude(location.getLongitude());
-
-        Toast.makeText(getApplicationContext(), "NEW LOCATION RECEIVED", Toast.LENGTH_LONG).show();
-
         latitude.setText(getString(R.string.latitude_string) + " " + getFusedLatitude());
         longitude.setText(getString(R.string.longitude_string) + " " + getFusedLongitude());
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
         mMap.animateCamera(cameraUpdate);
-        if (currLocationMarker!=null){
+        if (currLocationMarker != null) {
             currLocationMarker.remove();
         }
-       
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));

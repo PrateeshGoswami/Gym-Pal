@@ -28,7 +28,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     private TextView count;
     boolean activityRunning;
 
-    @Bind(R.id.count)
+    @Bind(R.id.step_count)
     public TextView mText_count;
     @Bind(R.id.button_start_runningActivity)
     public Button mbutton_start_run;
@@ -72,7 +72,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     public void onSensorChanged(SensorEvent event) {
         if (activityRunning) {
 
-            mText_count.setText(String.valueOf(Math.floor(event.values[0])));
+            mText_count.setText(getString(R.string.steps_count) + " " +String.valueOf(Math.floor(event.values[0])));
 
         }
 

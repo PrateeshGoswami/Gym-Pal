@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#7F007F</color>
     <!-- using the "Light Blue" Material Palette -->
     <color name="primary">#03A9F4</color>  <!-- 500 -->
     <color name="primary_dark">#0288D1</color>  <!-- 700 -->

@@ -4,5 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_name_size">24dp</dimen>
+    <dimen name="text_size">24sp</dimen>
     <dimen name="title_size">16dp</dimen>
+    <dimen name="pad_btn">2dp</dimen>
+
 </resources>

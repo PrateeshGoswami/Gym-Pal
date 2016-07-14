@@ -11,4 +11,6 @@
     <color name="primary_text">#212121</color>
     <color name="app_name">#ffffff</color>
     <color name="secondary_text">#727272</color>
+    <color name="blue">#33ccff</color>
+    <color name="white">#ffffff</color>
 </resources>

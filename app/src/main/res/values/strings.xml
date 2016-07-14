@@ -13,5 +13,6 @@
     <string name="start_service">Start Service</string>
     <string name="stop_service">Stop Service</string>
 
-
+    <string name="latitude_string">Latitude now:</string>
+    <string name="longitude_string">Longitude now:</string>
 </resources>

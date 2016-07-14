@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "60404571492",
+    "project_id": "gym-pal-1371"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60404571492:android:811117c476d46c12",
+        "android_client_info": {
+          "package_name": "com.example.home.gym_pal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60404571492-b12eve7snnijfr6d59ei7sk3t62q998t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.home.gym_pal",
+            "certificate_hash": "037839B90F3666AFC49293564955B4F6FB62467B"
+          }
+        },
+        {
+          "client_id": "60404571492-rp3jthedcjvc9ffhp808ei6utfvkog2k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-FWJUFBX4QMbcEPKjmIKEBuXpjLA0OuQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

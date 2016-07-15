@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 /**
  * @author Prateesh Goswami
@@ -19,11 +18,12 @@ public class FetchDistanceTask  extends AsyncTask<URL, Integer, StringBuilder> {
 
     private static final String TAG = FetchDistanceTask.class.getSimpleName();
 
-    private static final String DIRECTIONS_API_BASE = "https://maps.googleapis.com/maps/api/directions";
+    private static final String DIRECTIONS_API_BASE = "https://maps.googleapis.com/maps/api/distancematrix/json?" +
+            "units=imperial&origins=33.2831496,-111.8736732&destinations=33.2831496,-111.8739121";
     private static final String OUT_JSON = "/json";
 
     // API KEY of the project Google Map Api For work
-    private static final String API_KEY = "AIzaSyAX6jkD9z_lLMHYp1gXcyDL3uL4LDQYovIgit";
+    private static final String API_KEY = "AIzaSyBRIEw6T832UzbrjB665qMivXCTnF6ycpM";
 
     @Override
     protected StringBuilder doInBackground(URL... params) {
@@ -32,9 +32,9 @@ public class FetchDistanceTask  extends AsyncTask<URL, Integer, StringBuilder> {
         HttpURLConnection mUrlConnection = null;
         StringBuilder mJsonResults = new StringBuilder();
         try {
-            StringBuilder sb = new StringBuilder(DIRECTIONS_API_BASE + OUT_JSON);
-            sb.append("?origin=" + URLEncoder.encode("Chandler,Az", "utf8"));
-            sb.append("&destination=" + URLEncoder.encode("Scottsdale,AZ", "utf8"));
+            StringBuilder sb = new StringBuilder(DIRECTIONS_API_BASE );
+//            sb.append("?origin=" + URLEncoder.encode("33.2830301,-111.3893893", "utf8"));
+//            sb.append("&destination=" + URLEncoder.encode("33.28306789,-111.3893983", "utf8"));
             sb.append("&key=" + API_KEY);
 
             URL url = new URL(sb.toString());

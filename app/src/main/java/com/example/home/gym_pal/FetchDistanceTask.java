@@ -17,9 +17,13 @@ import java.net.URL;
 public class FetchDistanceTask  extends AsyncTask<URL, Integer, StringBuilder> {
 
     private static final String TAG = FetchDistanceTask.class.getSimpleName();
+    public double startLatitude = 33.2831496;
+    public double startLongitude = -111.8736732;
+    public double endLatitude = 33.2831496;
+    public double endLongitude = -111.8739121;
 
-    private static final String DIRECTIONS_API_BASE = "https://maps.googleapis.com/maps/api/distancematrix/json?" +
-            "units=imperial&origins=33.2831496,-111.8736732&destinations=33.2831496,-111.8739121";
+    private static final String DIRECTIONS_API_BASE = "https://maps.googleapis.com/maps/api/distancematrix/json?";
+
     private static final String OUT_JSON = "/json";
 
     // API KEY of the project Google Map Api For work
@@ -33,8 +37,9 @@ public class FetchDistanceTask  extends AsyncTask<URL, Integer, StringBuilder> {
         StringBuilder mJsonResults = new StringBuilder();
         try {
             StringBuilder sb = new StringBuilder(DIRECTIONS_API_BASE );
-//            sb.append("?origin=" + URLEncoder.encode("33.2830301,-111.3893893", "utf8"));
-//            sb.append("&destination=" + URLEncoder.encode("33.28306789,-111.3893983", "utf8"));
+            sb.append("units=imperial");
+            sb.append("&origins="+startLatitude + "," + startLongitude);
+            sb.append("&destinations="+endLatitude + "," + endLongitude);
             sb.append("&key=" + API_KEY);
 
             URL url = new URL(sb.toString());

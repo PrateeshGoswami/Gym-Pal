@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,10 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     private LocationRequest mLocationRequest;
     private TextView latitude, longitude;
 
+    public double startLatitude = 0.0;
+    public double startLongitude = 0.0;
+    public double endLatitude = 0.0;
+    public double endLongitude = 0.0;
     public double fusedLatitude = 0.0;
     public double fusedLongitude = 0.0;
     private GoogleMap mMap;
@@ -47,6 +54,12 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     public AdView mAdview;
     @Bind(R.id.toolbar)
     public Toolbar mToolbar;
+    @Bind(R.id.start_run)
+    public Button mButton_start;
+    @Bind(R.id.stop_run)
+    public Button mButton_stop;
+    @Bind(R.id.calc_dist)
+    public Button mButton_dist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +85,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
-
+        Log.d("test", "latitude is " + startLatitude + "longitude is :" + startLongitude);
     }
 
     private void initializeViews() {
@@ -169,7 +182,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(final Location location) {
         setFusedLatitude(location.getLatitude());
         setFusedLongitude(location.getLongitude());
         latitude.setText(getString(R.string.latitude_string) + " " + getFusedLatitude());
@@ -182,9 +195,35 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         }
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
         currLocationMarker = mMap.addMarker(markerOptions);
 
+        mButton_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLatitude = location.getLatitude();
+                startLongitude = location.getLongitude();
+                Log.d("test", "latitude is " + startLatitude + "longitude is :" + startLongitude);
+
+            }
+        });
+        mButton_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                endLatitude = location.getLatitude();
+                endLongitude = location.getLongitude();
+                Log.d("test", " end latitude is " + endLatitude + " end longitude is :" + endLongitude);
+
+            }
+        });
+
+        mButton_dist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FetchDistanceTask fetchDistanceTask = new FetchDistanceTask();
+                fetchDistanceTask.execute();
+            }
+        });
     }
 
     public void setFusedLatitude(double lat) {

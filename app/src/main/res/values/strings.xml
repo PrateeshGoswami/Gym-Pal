@@ -13,6 +13,7 @@
     <string name="start_run">Start Run</string>
     <string name="stop_run">Stop Run</string>
     <string name="distance">Distance Ran :</string>
+    <string name="calc_distance">calculate distance</string>
 
     <string name="latitude_string">Latitude now:</string>
     <string name="longitude_string">Longitude now:</string>

@@ -14,13 +14,15 @@ import java.net.URL;
  * @version 1.0
  * @date 7/14/2016
  */
-public class FetchDistanceTask  extends AsyncTask<URL, Integer, StringBuilder> {
+public class FetchDistanceTask  extends AsyncTask<Double, Integer, StringBuilder> {
 
     private static final String TAG = FetchDistanceTask.class.getSimpleName();
-    public double startLatitude = 33.2831496;
-    public double startLongitude = -111.8736732;
-    public double endLatitude = 33.2831496;
-    public double endLongitude = -111.8739121;
+
+
+    public double startLatitude = 0;
+    public double startLongitude = 0;
+    public double endLatitude = 0;
+    public double endLongitude = 0;
 
     private static final String DIRECTIONS_API_BASE = "https://maps.googleapis.com/maps/api/distancematrix/json?";
 
@@ -30,7 +32,15 @@ public class FetchDistanceTask  extends AsyncTask<URL, Integer, StringBuilder> {
     private static final String API_KEY = "AIzaSyBRIEw6T832UzbrjB665qMivXCTnF6ycpM";
 
     @Override
-    protected StringBuilder doInBackground(URL... params) {
+    protected StringBuilder doInBackground(Double... params) {
+        startLatitude = params[0];
+        startLongitude = params[1];
+        endLatitude = params[2];
+        endLongitude = params[3];
+        // If there's no info, there's nothing to look up.  Verify size of params.
+        if (params.length == 0) {
+            return null;
+        }
         Log.i(TAG, "doInBackground of ApiDirectionsAsyncTask");
 
         HttpURLConnection mUrlConnection = null;

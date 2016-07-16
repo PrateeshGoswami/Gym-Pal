@@ -6,6 +6,6 @@ package com.example.home.gym_pal;
  * @date 7/15/2016
  */
 public interface AsyncResponse {
-    void processFinish(String output);
+   public void processFinish(String output);
 
 }

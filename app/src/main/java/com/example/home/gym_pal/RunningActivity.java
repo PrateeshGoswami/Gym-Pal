@@ -37,7 +37,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         OnMapReadyCallback,AsyncResponse {
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
-    FetchDistanceTask fetchDistanceTask = new FetchDistanceTask();
+
 
 
     private LocationRequest mLocationRequest;
@@ -92,7 +92,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         mapFragment.getMapAsync(this);
         Log.d("test", "latitude is " + startLatitude + "longitude is :" + startLongitude);
 
-    fetchDistanceTask.delegate = this;
+
     }
 
     private void initializeViews() {
@@ -227,10 +227,17 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         mButton_dist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FetchDistanceTask fetchDistanceTask = new FetchDistanceTask();
-                fetchDistanceTask.execute(startLatitude,startLongitude,endLatitude,endLongitude);
+                getDistanceRan(startLatitude,startLongitude,endLatitude,endLongitude);
+//                fetchDistanceTask = new FetchDistanceTask();
+//                fetchDistanceTask.execute(startLatitude,startLongitude,endLatitude,endLongitude);
             }
         });
+    }
+    public void getDistanceRan(Double stlat,Double stlon,Double enlat,Double enlon){
+        FetchDistanceTask distanceTask = new FetchDistanceTask(RunningActivity.this);
+        distanceTask.setOnResponce(this);
+        distanceTask.execute(stlat,stlon,enlat,enlon);
+
     }
 
     public void setFusedLatitude(double lat) {
@@ -258,11 +265,12 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
 
     @Override
     public void processFinish(String output) {
-        int stop = output.indexOf(",");
-        int start = output.indexOf(":");
-        String result = output.substring(start,stop);
-        mText_distance.setText(getString(R.string.distance) + result);
-
+        if (output !=null) {
+            int stop = output.indexOf(",");
+            int start = output.indexOf(":");
+            String result = output.substring(start, stop);
+            mText_distance.setText(getString(R.string.distance) + result);
+        }
     }
 }
 

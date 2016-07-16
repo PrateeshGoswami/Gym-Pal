@@ -21,8 +21,16 @@ import java.net.URL;
 public class FetchDistanceTask extends AsyncTask<Double, Integer, StringBuilder> {
 
     private static final String TAG = FetchDistanceTask.class.getSimpleName();
-   private RunningActivity runningActivity;
+    private RunningActivity runningActivity;
     public AsyncResponse delegate = null;
+
+    public void setOnResponce(AsyncResponse responce){
+        delegate = responce;
+    }
+
+    public FetchDistanceTask(RunningActivity runningActivity){
+        this.runningActivity = runningActivity;
+    }
 
 
     public double startLatitude = 0;
@@ -125,12 +133,13 @@ public class FetchDistanceTask extends AsyncTask<Double, Integer, StringBuilder>
         return null;
 //        return mJsonResults;
     }
+
     @Override
     protected void onPostExecute(StringBuilder stringBuilder) {
 
-        if (stringBuilder != null){
+        if (stringBuilder != null) {
 //            runningActivity.mText_distance.setText(getString(R.string.latitude_string) + " " + stringBuilder);
-        delegate.processFinish(stringBuilder.toString());
+            delegate.processFinish(stringBuilder.toString());
         }
 
 

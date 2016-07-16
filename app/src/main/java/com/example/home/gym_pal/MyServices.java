@@ -5,12 +5,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * @author Prateesh Goswami
@@ -18,6 +20,8 @@ import android.util.Log;
  * @date 7/9/2016
  */
 public class MyServices extends Service {
+
+    private String gymWiFi;
 
     @Nullable
     @Override
@@ -56,12 +60,12 @@ public class MyServices extends Service {
 
                     boolean connect = checkConnectedToDesiredWifi();
                     if (connect == true) {
-//                        Toast.makeText(getApplicationContext(), "connected to me,my home network", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "connected to me,my home network", Toast.LENGTH_LONG).show();
                         Log.d("test", "connected to wifi");
 
                     } else {
-//                        Toast.makeText(getApplicationContext(), "not connected to me,my home network", Toast.LENGTH_LONG).show();
-//                        Log.d("test", " not connected to wifi");
+                        Toast.makeText(getApplicationContext(), "not connected to me,my home network", Toast.LENGTH_LONG).show();
+                        Log.d("test", " not connected to wifi");
 
 
                     }
@@ -75,23 +79,29 @@ public class MyServices extends Service {
         private boolean checkConnectedToDesiredWifi() {
             boolean connected = false;
 
-            String desiredMacAddress = "Goswami";
+            SharedPreferences mPrefs = getSharedPreferences("wifidata", 0);
+            String restoredText = mPrefs.getString("wifi", null);
+            if (restoredText != null) {
+                gymWiFi = mPrefs.getString("wifi", "No wifi set");
+
+            }
+
 
             WifiManager wifiManager =
                     (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
             WifiInfo wifi = wifiManager.getConnectionInfo();
             if (wifi != null) {
-//                Toast.makeText(getApplicationContext(), "connected to me", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "connected to me", Toast.LENGTH_LONG).show();
 
                 // get current router Mac address
                 String bssid = wifi.getSSID();
-                if (bssid.contains(desiredMacAddress)){
+                if (bssid.contains(gymWiFi)) {
                     connected = true;
                 }
 //                connected = desiredMacAddress.equals(bssid);
                 Log.d("test", "connected to wifi :" + bssid);
-//                Log.d("test", "state of conneted is  :" + connected);
+                Log.d("test", "state of conneted is  :" + connected);
 
             }
 //

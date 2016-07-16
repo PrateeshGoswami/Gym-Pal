@@ -3,6 +3,7 @@ package com.example.home.gym_pal;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -46,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //        check if this is the first run
-        Boolean isFirstRun = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
-                .getBoolean("isfirstrun",true);
-        if (isFirstRun){
-            Toast.makeText(this,"This is first run ",Toast.LENGTH_LONG).show();
+        Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .getBoolean("isfirstrun", true);
+        if (isFirstRun) {
+            Toast.makeText(this, "This is first run ", Toast.LENGTH_LONG).show();
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
-            final View dialogView = inflater.inflate(R.layout.wifi_dialog,null);
+            final View dialogView = inflater.inflate(R.layout.wifi_dialog, null);
             dialogBuilder.setView(dialogView);
 
             final EditText edtxt = (EditText) dialogView.findViewById(R.id.edit1);
@@ -62,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences mPrefs = getSharedPreferences("wifidata", 0);
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    prefsEditor.putString("wifi", edtxt.getText().toString());
+                    prefsEditor.commit();
+                    startService(new Intent(getBaseContext(), MyServices.class));
+
 
                 }
             });
@@ -74,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
             AlertDialog bDialog = dialogBuilder.create();
             bDialog.show();
-            getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit()
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
                     .putBoolean("isfirstrun", false).commit();
         }
     }
@@ -104,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        startService(new Intent(getBaseContext(), MyServices.class));
 
 
     }

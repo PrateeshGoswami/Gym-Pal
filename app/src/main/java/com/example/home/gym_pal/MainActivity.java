@@ -1,14 +1,19 @@
 package com.example.home.gym_pal;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -40,6 +45,38 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+//        check if this is the first run
+        Boolean isFirstRun = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
+                .getBoolean("isfirstrun",true);
+        if (isFirstRun){
+            Toast.makeText(this,"This is first run ",Toast.LENGTH_LONG).show();
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = this.getLayoutInflater();
+            final View dialogView = inflater.inflate(R.layout.wifi_dialog,null);
+            dialogBuilder.setView(dialogView);
+
+            final EditText edtxt = (EditText) dialogView.findViewById(R.id.edit1);
+
+            dialogBuilder.setTitle("GYM_PAL");
+            dialogBuilder.setMessage("Enter your gym's WiFi ");
+            dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+
+            AlertDialog bDialog = dialogBuilder.create();
+            bDialog.show();
+            getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit()
+                    .putBoolean("isfirstrun", false).commit();
+        }
     }
 
     @Override

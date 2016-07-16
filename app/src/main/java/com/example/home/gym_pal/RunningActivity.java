@@ -33,9 +33,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RunningActivity extends AppCompatActivity implements LocationListener, OnMapReadyCallback {
+public class RunningActivity extends AppCompatActivity implements LocationListener,
+        OnMapReadyCallback,AsyncResponse {
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
+    FetchDistanceTask fetchDistanceTask = new FetchDistanceTask();
 
 
     private LocationRequest mLocationRequest;
@@ -61,6 +63,8 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     public Button mButton_stop;
     @Bind(R.id.calc_dist)
     public Button mButton_dist;
+    @Bind(R.id.textview_distance)
+    public TextView mText_distance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,8 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
                 .findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
         Log.d("test", "latitude is " + startLatitude + "longitude is :" + startLongitude);
+
+    fetchDistanceTask.delegate = this;
     }
 
     private void initializeViews() {
@@ -221,7 +227,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         mButton_dist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FetchDistanceTask fetchDistanceTask = new FetchDistanceTask();
+//                FetchDistanceTask fetchDistanceTask = new FetchDistanceTask();
                 fetchDistanceTask.execute(startLatitude,startLongitude,endLatitude,endLongitude);
             }
         });
@@ -247,6 +253,15 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
+    }
+
+    @Override
+    public void processFinish(String output) {
+        int stop = output.indexOf(",");
+        int start = output.indexOf(":");
+        String result = output.substring(start,stop);
+        mText_distance.setText(getString(R.string.distance) + result);
 
     }
 }

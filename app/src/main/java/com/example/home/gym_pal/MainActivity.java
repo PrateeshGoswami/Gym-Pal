@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
             final EditText edtxt = (EditText) dialogView.findViewById(R.id.edit1);
 
-            dialogBuilder.setTitle("GYM_PAL");
-            dialogBuilder.setMessage("Enter your gym's WiFi ");
+            dialogBuilder.setTitle(R.string.app_name);
+            dialogBuilder.setMessage(R.string.enter_WiFI);
             dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

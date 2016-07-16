@@ -58,7 +58,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
         if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
-            Toast.makeText(getActivity(), "count sensor not available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),R.string.sensor_not_Available, Toast.LENGTH_LONG).show();
         }
     }
 

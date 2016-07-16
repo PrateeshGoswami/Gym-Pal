@@ -60,11 +60,11 @@ public class MyServices extends Service {
 
                     boolean connect = checkConnectedToDesiredWifi();
                     if (connect == true) {
-                        Toast.makeText(getApplicationContext(), "connected to me,my home network", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "connected to WIFI network provided", Toast.LENGTH_LONG).show();
                         Log.d("test", "connected to wifi");
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "not connected to me,my home network", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "not connected to WIFI network provided ", Toast.LENGTH_LONG).show();
                         Log.d("test", " not connected to wifi");
 
 

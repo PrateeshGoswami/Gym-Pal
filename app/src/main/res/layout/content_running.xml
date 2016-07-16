@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/round_btn_shape"
+                android:contentDescription="@string/start_run"
                 android:text="@string/start_run"
                 android:padding="@dimen/pad_btn"
                 android:textColor="@color/white"
@@ -63,6 +64,7 @@
                 android:background="@drawable/round_btn_shape"
                 android:layout_weight="1"
                 android:text="@string/stop_run"
+                android:contentDescription="@string/stop_run"
                 android:padding="@dimen/pad_btn"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round_btn_shape"
             android:text="@string/calc_distance"
+            android:contentDescription="@string/calc_distance"
             android:padding="@dimen/pad_btn"
             android:textColor="@color/white"
             android:textSize="22sp" />

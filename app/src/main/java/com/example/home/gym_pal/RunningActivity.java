@@ -114,11 +114,11 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 Toast.makeText(getApplicationContext(),
-                        "This device is supported. Please download google play services", Toast.LENGTH_LONG)
+                        R.string.device_is_supported, Toast.LENGTH_LONG)
                         .show();
             } else {
                 Toast.makeText(getApplicationContext(),
-                        "This device is not supported.", Toast.LENGTH_LONG)
+                        R.string.device_is_not_supported, Toast.LENGTH_LONG)
                         .show();
                 finish();
             }

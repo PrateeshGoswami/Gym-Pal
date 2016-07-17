@@ -38,8 +38,6 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
 
-
-
     private LocationRequest mLocationRequest;
     private TextView latitude, longitude;
 
@@ -211,6 +209,7 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
                 startLatitude = location.getLatitude();
                 startLongitude = location.getLongitude();
                 Log.d("test", "latitude is " + startLatitude + "longitude is :" + startLongitude);
+
 
             }
         });

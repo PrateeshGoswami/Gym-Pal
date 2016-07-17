@@ -21,6 +21,8 @@ import android.widget.Toast;
  */
 public class MyServices extends Service {
 
+
+    private int wentToGym = 0;
     private String gymWiFi;
 
     @Nullable
@@ -29,11 +31,14 @@ public class MyServices extends Service {
         return null;
     }
 
+//    when user enters gyms wifi and presses the done button
+//    this service starts and keeps running in the back ground
+//    it keeps track if user connects to a particular wifi
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         BroadcastReceiver broadcastReceiver = new WifiBroadcastReceiver();
-//        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-//        Log.d("test", "Start service");
+
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         registerReceiver(broadcastReceiver, intentFilter);
@@ -44,8 +49,6 @@ public class MyServices extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
-//        Log.d("test", "stop service");
 
     }
 
@@ -60,6 +63,13 @@ public class MyServices extends Service {
 
                     boolean connect = checkConnectedToDesiredWifi();
                     if (connect == true) {
+
+                        wentToGym++;
+//                     every time user visits gym increase the counter and save it
+                        SharedPreferences.Editor editor = getSharedPreferences("GymAttendence", MODE_PRIVATE).edit();
+                        editor.putInt("wentToGym", wentToGym);
+                        editor.commit();
+
                         Toast.makeText(getApplicationContext(), "connected to WIFI network provided", Toast.LENGTH_LONG).show();
                         Log.d("test", "connected to wifi");
 

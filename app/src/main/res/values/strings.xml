@@ -4,7 +4,10 @@
     <string name="enter_WiFI">Enter your gym\'s WiFi</string>
 
     <string name="steps_count">Steps since last reboot </string>
+    <string name="steps_count_midNight">Time since Reboot</string>
+    <string name="steps_avg">Average Steps per Day</string>
     <string name="sensor_not_Available">count sensor not available </string>
+
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="title_activity_running">Running-Pal </string>
     <string name="start_activity_runing">Running Pal</string>
@@ -18,6 +21,7 @@
     <string name="start_run">Start Run</string>
     <string name="stop_run">Stop Run</string>
     <string name="distance">Distance Ran :</string>
+    <string name="time">Time Ran :</string>
     <string name="calc_distance">calculate distance</string>
 
     <string name="latitude_string">Latitude now:</string>

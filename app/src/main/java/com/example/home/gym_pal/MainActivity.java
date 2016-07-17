@@ -46,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-//        check if this is the first run
+        //        check if this is the first run
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isfirstrun", true);
+        //if it is the first run get users gyms wifi address
+        //        so that we can keep track of how many times
+        // user connects to the wifi address
         if (isFirstRun) {
             Toast.makeText(this, "This is first run ", Toast.LENGTH_LONG).show();
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -81,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
             AlertDialog bDialog = dialogBuilder.create();
             bDialog.show();
+//            set isfirstrun boolean to  false as we dont need
+//            to ask user again the wifi address
             getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
                     .putBoolean("isfirstrun", false).commit();
         }

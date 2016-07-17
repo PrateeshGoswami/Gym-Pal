@@ -25,6 +25,20 @@
             android:text="@string/steps_count"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size" />
+        <TextView
+            android:id="@+id/step_count_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/steps_count_midNight"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+        <TextView
+            android:id="@+id/avg_steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/steps_count"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
 
 
         <Button

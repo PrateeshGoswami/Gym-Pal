@@ -1,4 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
 
 android {
     compileSdkVersion 23
@@ -28,5 +39,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:9.2.0'
     compile 'com.google.maps.android:android-maps-utils:0.4+'
     compile 'com.jakewharton:butterknife:7.0.1'
+    apt 'net.simonvt.schematic:schematic-compiler:0.6.7'
+    compile 'net.simonvt.schematic:schematic:0.6.7'
 }
 apply plugin: 'com.google.gms.google-services'

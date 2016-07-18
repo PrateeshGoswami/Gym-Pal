@@ -117,9 +117,9 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
 
 
 
-            mText_count.setText(getString(R.string.steps_count) + " " + String.valueOf(Math.floor(event.values[0])));
-            mText_count_today.setText(getString(R.string.steps_count_midNight) + " " + days + "days"+  hours +"hrs" + minutes +"mins" + seconds + "secs" );
-            mText_avg.setText(getString(R.string.steps_avg) +" "+ avg );
+            mText_count.setText(getString(R.string.steps_count) + ": " + String.valueOf(Math.floor(event.values[0])));
+            mText_count_today.setText(getString(R.string.steps_count_midNight) + ": " +"\n" + days + " days "+  hours +" hrs " + minutes +" mins " + seconds + " secs " );
+            mText_avg.setText(getString(R.string.steps_avg) +": "+ avg );
 
         }
 

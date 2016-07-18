@@ -47,6 +47,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.home.gym_pal.MainActivity" />
         </activity>
+
+        <provider
+            android:authorities="com.example.home.gym_pal.GymProvider"
+            android:name="com.example.home.gym_pal.generated.GymProvider"
+            android:exported="false"/>
+
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 

@@ -98,20 +98,27 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     public void onSensorChanged(SensorEvent event) {
         if (activityRunning) {
 
+
             stepsFromSensor2 = (int) event.values[0];
             stepsSinceMidnight = stepsFromSensor2 - stepsFromSensor1;
             Log.d("test","stepsfromsensor2 =" + stepsFromSensor2);
             long elapsedTime = SystemClock.elapsedRealtime();
-            Log.d("test","stepsfromsensor1 =" + elapsedTime);
+            Log.d("test","elapsed time =" + elapsedTime);
             int seconds = (int) (elapsedTime / 1000) % 60 ;
             int minutes = (int) ((elapsedTime / (1000*60)) % 60);
             int hours   = (int) ((elapsedTime / (1000*60*60)) % 24);
+            int days = (int) ((elapsedTime /(1000*60*60*24)));
+
+            Log.d("test","seconds:"+seconds);
+            Log.d("test","minutes:"+minutes);
+            Log.d("test","hours:"+hours);
+
             float avg = (event.values[0]/elapsedTime)*1000*60*60*24;
 
 
 
             mText_count.setText(getString(R.string.steps_count) + " " + String.valueOf(Math.floor(event.values[0])));
-            mText_count_today.setText(getString(R.string.steps_count_midNight) + " " + hours +":" + minutes +":" + seconds );
+            mText_count_today.setText(getString(R.string.steps_count_midNight) + " " + days + "days"+  hours +"hrs" + minutes +"mins" + seconds + "secs" );
             mText_avg.setText(getString(R.string.steps_avg) +" "+ avg );
 
         }

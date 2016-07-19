@@ -2,6 +2,8 @@ package com.example.home.gym_pal;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,12 +16,15 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author Prateesh Goswami
  * @version 1.0
  * @date 7/9/2016
  */
-public class MyServices extends Service {
+public class MyServices extends Service  {
 
 
     private int wentToGym = 0;
@@ -69,6 +74,19 @@ public class MyServices extends Service {
                         SharedPreferences.Editor editor = getSharedPreferences("GymAttendence", MODE_PRIVATE).edit();
                         editor.putInt("wentToGym", wentToGym);
                         editor.commit();
+
+                        ContentResolver contentResolver = getContentResolver();
+
+                        ContentValues values = new ContentValues();
+                        values.put(GymColumns.COUNT,wentToGym);
+                        values.put(GymColumns.DATETIME,System.currentTimeMillis());
+                        contentResolver.insert(GymProvider.Attendance.ATTENDANCE,values);
+                        long yourmilliseconds = System.currentTimeMillis();
+                        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
+                        Date resultdate = new Date(yourmilliseconds);
+                        System.out.println(sdf.format(resultdate));
+                        Log.d("testing data","inserted " + wentToGym +" : "+ System.currentTimeMillis() + resultdate);
+                        Log.d("testing data","inserted date " + sdf.format(resultdate));
 
                         Toast.makeText(getApplicationContext(), "connected to WIFI network provided", Toast.LENGTH_LONG).show();
                         Log.d("test", "connected to wifi");

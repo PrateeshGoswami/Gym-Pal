@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -26,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Stetho.initializeWithDefaults(this);
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(
+                                Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(
+                                Stetho.defaultInspectorModulesProvider(this))
+                        .build());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        Adbanner

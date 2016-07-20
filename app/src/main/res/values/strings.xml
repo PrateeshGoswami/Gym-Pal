@@ -27,6 +27,13 @@
     <string name="latitude_string">Latitude now:</string>
     <string name="longitude_string">Longitude now:</string>
 
+    <string name="Gym_Attendance">Gym Attendance</string>
+    <string name="last_visit">Your last visit </string>
+    <string name="week_visit">Total visits this week</string>
+    <string name="month_visit">Total visits this Month</string>
+    <string name="Year_visit">Total visits this Year</string>
+
+
     <string name="DIRECTIONS_API_BASE">"https://maps.googleapis.com/maps/api/distancematrix/json?"</string>
 
 

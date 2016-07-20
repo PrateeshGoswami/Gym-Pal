@@ -51,6 +51,42 @@
             android:text="@string/start_activity_runing"
             android:contentDescription="start_activity_runing_content"
             android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Gym_Attendance"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+        <TextView
+            android:id="@+id/last_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_visit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+        <TextView
+            android:id="@+id/week_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/week_visit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+        <TextView
+            android:id="@+id/month_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/month_visit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+        <TextView
+            android:id="@+id/year_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Year_visit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
     </LinearLayout>
 
     <com.google.android.gms.ads.AdView

@@ -80,7 +80,7 @@ public class MyServices extends Service  {
                         ContentValues values = new ContentValues();
                         values.put(GymColumns.COUNT,wentToGym);
                         values.put(GymColumns.DATETIME,System.currentTimeMillis());
-                        contentResolver.insert(GymProvider.Attendance.ATTENDANCE,values);
+                        contentResolver.insert(GymProvider.Attendance.CONTENT_URI,values);
                         long yourmilliseconds = System.currentTimeMillis();
                         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
                         Date resultdate = new Date(yourmilliseconds);

@@ -3,13 +3,18 @@ package com.example.home.gym_pal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +23,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,8 +33,8 @@ import butterknife.OnClick;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment implements SensorEventListener {
-
+public class MainActivityFragment extends Fragment implements SensorEventListener,LoaderManager.LoaderCallbacks<Cursor> {
+    private static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
     private int stepsFromSensor1 = 0;
     private int stepsFromSensor2 = 0;
     private int stepsSinceMidnight = 0;
@@ -44,8 +52,29 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     public TextView mText_avg;
     @Bind(R.id.button_start_runningActivity)
     public Button mbutton_start_run;
-
+    @Bind(R.id.attendance)
+    public TextView mText_Attendance;
+@Bind(R.id.last_visit)
+    public TextView mText_last;
+@Bind(R.id.week_visit)
+    public TextView mText_week;
+@Bind(R.id.month_visit)
+    public TextView mText_month;
+@Bind(R.id.year_visit)
+    public TextView mText_year;
+    private static final int CURSOR_LOADER_ID = 0;
     public MainActivityFragment() {
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Cursor c = getActivity().getContentResolver().query(GymProvider.Attendance.CONTENT_URI,
+                null,null,null,null);
+        Log.i(LOG_TAG, "cursor count: " + c.getCount());
+        getLoaderManager().initLoader(CURSOR_LOADER_ID,null,this);
+        super.onActivityCreated(savedInstanceState);
+
+
     }
 
     @Override
@@ -53,6 +82,7 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         SharedPreferences mPrefs = getActivity().getSharedPreferences("countLaunchData", 0);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
@@ -127,6 +157,52 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.d("testing","Loader created " + GymProvider.Attendance.CONTENT_URI);
+        CursorLoader cursorLoader = new CursorLoader(getActivity(),
+                GymProvider.Attendance.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+        return cursorLoader;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        data.moveToFirst();
+       String[] x = data.getColumnNames();
+        Log.d("test","getting data fro database " + x);
+        int i = data.getCount();
+        Log.d("test","getting data from database " + i);
+//        String text  = (String) mText_Attendance.getText();
+        String text = null;
+        long text2 = 0;
+
+        while(!data.isAfterLast()){
+//            text += "<br/>" + data.getString(1);
+            text = data.getString(1);
+            text2 = Long.parseLong(data.getString(2));
+//
+            data.moveToNext();
+//            Log.d("test","getting data fro database " + text);
+        }
+        long yourmilliseconds = text2;
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
+        Date resultdate = new Date(yourmilliseconds);
+        mText_last.setText(getString(R.string.last_visit) + ": " + resultdate);
+//
+        mText_week.setText(getString(R.string.week_visit) + ": " +text );
+        mText_month.setText(getString(R.string.month_visit) + ": " +text);
+        mText_year.setText(getString(R.string.Year_visit) + ": " +text);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
 
     }
 }

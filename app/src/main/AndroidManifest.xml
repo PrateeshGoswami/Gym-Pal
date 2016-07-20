@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -49,15 +48,30 @@
         </activity>
 
         <provider
+            android:name=".generated.GymProvider"
             android:authorities="com.example.home.gym_pal.GymProvider"
-            android:name="com.example.home.gym_pal.generated.GymProvider"
-            android:exported="false"/>
+            android:exported="false" />
 
-        <meta-data android:name="com.google.android.gms.version"
+        <meta-data
+            android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAX6jkD9z_lLMHYp1gXcyDL3uL4LDQYovI" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAX6jkD9z_lLMHYp1gXcyDL3uL4LDQYovI"/>
+        <receiver android:name=".Gym_Pal_Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/gym__pal__widget_info" />
+        </receiver>
+
+        <service android:name=".UpdateWidgetService"/>
+
+
     </application>
 
 </manifest>

@@ -14,10 +14,6 @@ import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author Prateesh Goswami
@@ -76,24 +72,15 @@ public class MyServices extends Service  {
                         editor.commit();
 
                         ContentResolver contentResolver = getContentResolver();
-
                         ContentValues values = new ContentValues();
                         values.put(GymColumns.COUNT,wentToGym);
                         values.put(GymColumns.DATETIME,System.currentTimeMillis());
                         contentResolver.insert(GymProvider.Attendance.CONTENT_URI,values);
-                        long yourmilliseconds = System.currentTimeMillis();
-                        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
-                        Date resultdate = new Date(yourmilliseconds);
-                        System.out.println(sdf.format(resultdate));
-                        Log.d("testing data","inserted " + wentToGym +" : "+ System.currentTimeMillis() + resultdate);
-                        Log.d("testing data","inserted date " + sdf.format(resultdate));
 
-                        Toast.makeText(getApplicationContext(), "connected to WIFI network provided", Toast.LENGTH_LONG).show();
-                        Log.d("test", "connected to wifi");
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "not connected to WIFI network provided ", Toast.LENGTH_LONG).show();
-                        Log.d("test", " not connected to wifi");
+//                        Toast.makeText(getApplicationContext(), "not connected to WIFI network provided ", Toast.LENGTH_LONG).show();
+//                        Log.d("test", " not connected to wifi");
 
 
                     }
@@ -106,25 +93,22 @@ public class MyServices extends Service  {
          */
         private boolean checkConnectedToDesiredWifi() {
             boolean connected = false;
-
             SharedPreferences mPrefs = getSharedPreferences("wifidata", 0);
             String restoredText = mPrefs.getString("wifi", null);
             if (restoredText != null) {
                 gymWiFi = mPrefs.getString("wifi", "No wifi set");
-
             }
-
 
             WifiManager wifiManager =
                     (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
             WifiInfo wifi = wifiManager.getConnectionInfo();
             if (wifi != null) {
-                Toast.makeText(getApplicationContext(), "connected to me", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "connected to me", Toast.LENGTH_LONG).show();
 
                 // get current router Mac address
                 String bssid = wifi.getSSID();
-                if (bssid.contains(gymWiFi)) {
+                if (bssid.equalsIgnoreCase(gymWiFi )|| bssid.contains(gymWiFi)) {
                     connected = true;
                 }
 //                connected = desiredMacAddress.equals(bssid);

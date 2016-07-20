@@ -18,6 +18,71 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+        <TextView
+            android:id="@+id/attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Gym_Attendance"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text"
+            android:textSize="@dimen/title_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/last_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/last_visit"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/week_visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/week_visit"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
+        <!--<TextView-->
+        <!--android:id="@+id/month_visit"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/month_visit"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/text_size" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/year_visit"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/Year_visit"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/text_size" />-->
         <TextView
             android:id="@+id/step_title"
             android:layout_width="match_parent"
@@ -87,70 +152,6 @@
             android:background="@android:color/darker_gray" />
 
 
-        <TextView
-            android:id="@+id/attendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Gym_Attendance"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/text"
-            android:textSize="@dimen/title_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
-
-        <TextView
-            android:id="@+id/last_visit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/last_visit"
-            android:textColor="@color/text"
-            android:textSize="@dimen/text_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
-
-        <TextView
-            android:id="@+id/week_visit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/week_visit"
-            android:textColor="@color/text"
-            android:textSize="@dimen/text_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
-        <!--<TextView-->
-        <!--android:id="@+id/month_visit"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/month_visit"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textSize="@dimen/text_size" />-->
-        <!--<TextView-->
-        <!--android:id="@+id/year_visit"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/Year_visit"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textSize="@dimen/text_size" />-->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

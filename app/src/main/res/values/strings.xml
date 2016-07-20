@@ -3,8 +3,9 @@
     <string name="action_settings">Settings</string>
     <string name="enter_WiFI">Enter your gym\'s WiFi</string>
 
-    <string name="steps_count">Steps since last reboot </string>
-    <string name="steps_count_midNight">Time since Reboot</string>
+    <string name="steps_title">Since last reboot </string>
+    <string name="steps_count">Steps</string>
+    <string name="steps_count_midNight">Time</string>
     <string name="steps_avg">Average Steps per Day</string>
     <string name="sensor_not_Available">count sensor not available </string>
 
@@ -27,9 +28,9 @@
     <string name="latitude_string">Latitude now:</string>
     <string name="longitude_string">Longitude now:</string>
 
-    <string name="Gym_Attendance">Gym Attendance</string>
+    <string name="Gym_Attendance">Gym Visits</string>
     <string name="last_visit">Your last visit </string>
-    <string name="week_visit">Total visits this week</string>
+    <string name="week_visit">Total visits</string>
     <string name="month_visit">Total visits this Month</string>
     <string name="Year_visit">Total visits this Year</string>
 

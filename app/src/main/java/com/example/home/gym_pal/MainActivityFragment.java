@@ -58,10 +58,10 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     public TextView mText_last;
 @Bind(R.id.week_visit)
     public TextView mText_week;
-@Bind(R.id.month_visit)
-    public TextView mText_month;
-@Bind(R.id.year_visit)
-    public TextView mText_year;
+//@Bind(R.id.month_visit)
+//    public TextView mText_month;
+//@Bind(R.id.year_visit)
+//    public TextView mText_year;
     private static final int CURSOR_LOADER_ID = 0;
     public MainActivityFragment() {
     }
@@ -197,8 +197,8 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
         mText_last.setText(getString(R.string.last_visit) + ": " + resultdate);
 //
         mText_week.setText(getString(R.string.week_visit) + ": " +text );
-        mText_month.setText(getString(R.string.month_visit) + ": " +text);
-        mText_year.setText(getString(R.string.Year_visit) + ": " +text);
+//        mText_month.setText(getString(R.string.month_visit) + ": " +text);
+//        mText_year.setText(getString(R.string.Year_visit) + ": " +text);
     }
 
     @Override

@@ -3,8 +3,7 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="@color/blue"
+    android:background="@color/grey"
     android:gravity="top"
     android:orientation="vertical">
 
@@ -12,31 +11,42 @@
         android:id="@+id/latlon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textview_latitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/text"
             android:textSize="@dimen/text_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/textview_longitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+
+            android:textColor="@color/text"
             android:textSize="@dimen/text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
 
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/pad_btn"
             android:orientation="horizontal">
 
@@ -47,8 +57,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/round_btn_shape"
                 android:contentDescription="@string/start_run"
-                android:text="@string/start_run"
                 android:padding="@dimen/pad_btn"
+                android:text="@string/start_run"
                 android:textColor="@color/white"
 
                 android:textSize="22sp" />
@@ -61,39 +71,43 @@
                 android:id="@+id/stop_run"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_btn_shape"
                 android:layout_weight="1"
-                android:text="@string/stop_run"
+                android:background="@drawable/round_btn_shape"
                 android:contentDescription="@string/stop_run"
                 android:padding="@dimen/pad_btn"
+                android:text="@string/stop_run"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
 
         </LinearLayout>
+
         <Button
             android:id="@+id/calc_dist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_btn_shape"
-            android:text="@string/calc_distance"
             android:contentDescription="@string/calc_distance"
             android:padding="@dimen/pad_btn"
+            android:text="@string/calc_distance"
             android:textColor="@color/white"
             android:textSize="22sp" />
+
         <TextView
             android:id="@+id/textview_distance"
-            android:text="@string/distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/distance"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text_size" />
         <!--<TextView-->
-            <!--android:id="@+id/textview_time"-->
-            <!--android:text="@string/time"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="22sp" />-->
+        <!--android:id="@+id/textview_time"-->
+        <!--android:text="@string/time"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="22sp" />-->
     </LinearLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"

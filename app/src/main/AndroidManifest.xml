@@ -69,7 +69,10 @@
                 android:resource="@xml/gym__pal__widget_info" />
         </receiver>
 
-        <service android:name=".UpdateWidgetService"/>
+        <service
+                    android:name=".UpdateWidgetService"
+                    android:exported="false"
+                   android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
 
     </application>

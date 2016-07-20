@@ -1,13 +1,13 @@
 package com.example.home.gym_pal;
 
 import android.app.PendingIntent;
-import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.RemoteViewsService;
 
 import java.util.Random;
 
@@ -16,7 +16,7 @@ import java.util.Random;
  * @version 1.0
  * @date 7/20/2016
  */
-public class UpdateWidgetService extends Service {
+public class UpdateWidgetService extends RemoteViewsService {
     private static final String Log_Tag = UpdateWidgetService.class.getSimpleName();
 
     @Override
@@ -55,6 +55,11 @@ public class UpdateWidgetService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return null;
     }
 }

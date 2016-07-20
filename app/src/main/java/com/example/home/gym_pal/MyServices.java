@@ -8,11 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
 
 /**
@@ -20,10 +23,11 @@ import android.util.Log;
  * @version 1.0
  * @date 7/9/2016
  */
-public class MyServices extends Service  {
+public class MyServices extends Service implements Loader.OnLoadCompleteListener<Cursor> {
 
 
-    private int wentToGym = 0;
+    private static final int LOADER_ID_NETWORK = 0 ;
+    private int wentToGym;
     private String gymWiFi;
 
     @Nullable
@@ -35,6 +39,14 @@ public class MyServices extends Service  {
 //    when user enters gyms wifi and presses the done button
 //    this service starts and keeps running in the back ground
 //    it keeps track if user connects to a particular wifi
+
+
+    @Override
+    public void onCreate() {
+       CursorLoader mCursorLoader = new CursorLoader(getApplicationContext(), GymProvider.Attendance.CONTENT_URI, null, null, null, null);
+        mCursorLoader.registerListener(LOADER_ID_NETWORK, this);
+        mCursorLoader.startLoading();
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -53,6 +65,19 @@ public class MyServices extends Service  {
 
     }
 
+    @Override
+    public void onLoadComplete(Loader<Cursor> loader, Cursor data) {
+        data.moveToFirst();
+        int num = 0;
+        while(!data.isAfterLast()){
+            num = data.getInt(1);
+
+            data.moveToNext();
+        }
+        wentToGym = num;
+    }
+
+
     private class WifiBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -65,22 +90,17 @@ public class MyServices extends Service  {
                     boolean connect = checkConnectedToDesiredWifi();
                     if (connect == true) {
 
-                        wentToGym++;
-//                     every time user visits gym increase the counter and save it
-                        SharedPreferences.Editor editor = getSharedPreferences("GymAttendence", MODE_PRIVATE).edit();
-                        editor.putInt("wentToGym", wentToGym);
-                        editor.commit();
 
+//                     every time user visits gym increase the counter and save it
+//                        SharedPreferences.Editor editor = getSharedPreferences("GymAttendence", MODE_PRIVATE).edit();
+//                        editor.putInt("wentToGym", wentToGym);
+//                        editor.commit();
+                        wentToGym++;
                         ContentResolver contentResolver = getContentResolver();
                         ContentValues values = new ContentValues();
                         values.put(GymColumns.COUNT,wentToGym);
                         values.put(GymColumns.DATETIME,System.currentTimeMillis());
                         contentResolver.insert(GymProvider.Attendance.CONTENT_URI,values);
-
-
-                    } else {
-//                        Toast.makeText(getApplicationContext(), "not connected to WIFI network provided ", Toast.LENGTH_LONG).show();
-//                        Log.d("test", " not connected to wifi");
 
 
                     }
@@ -108,7 +128,7 @@ public class MyServices extends Service  {
 
                 // get current router Mac address
                 String bssid = wifi.getSSID();
-                if (bssid.equalsIgnoreCase(gymWiFi )|| bssid.contains(gymWiFi)) {
+                if (bssid.contains(gymWiFi)) {
                     connected = true;
                 }
 //                connected = desiredMacAddress.equals(bssid);

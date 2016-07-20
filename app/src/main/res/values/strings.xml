@@ -34,6 +34,8 @@
     <string name="month_visit">Total visits this Month</string>
     <string name="Year_visit">Total visits this Year</string>
 
+    <string name="widget_title">Gym-Pal </string>
+
 
     <string name="DIRECTIONS_API_BASE">"https://maps.googleapis.com/maps/api/distancematrix/json?"</string>
 

@@ -70,9 +70,9 @@
         </receiver>
 
         <service
-                    android:name=".UpdateWidgetService"
-                    android:exported="false"
-                   android:permission="android.permission.BIND_REMOTEVIEWS"/>
+            android:name=".UpdateWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
 
     </application>

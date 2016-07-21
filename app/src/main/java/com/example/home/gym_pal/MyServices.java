@@ -16,7 +16,6 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 
 /**
  * @author Prateesh Goswami
@@ -124,16 +123,12 @@ public class MyServices extends Service implements Loader.OnLoadCompleteListener
 
             WifiInfo wifi = wifiManager.getConnectionInfo();
             if (wifi != null) {
-//                Toast.makeText(getApplicationContext(), "connected to me", Toast.LENGTH_LONG).show();
 
                 // get current router Mac address
                 String bssid = wifi.getSSID();
                 if (bssid.contains(gymWiFi)) {
                     connected = true;
                 }
-//                connected = desiredMacAddress.equals(bssid);
-                Log.d("test", "connected to wifi :" + bssid);
-                Log.d("test", "state of conneted is  :" + connected);
 
             }
 //

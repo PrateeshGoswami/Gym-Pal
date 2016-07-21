@@ -11,6 +11,9 @@ import android.support.v4.content.Loader;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author Prateesh Goswami
  * @version 1.0
@@ -59,12 +62,17 @@ public class UpdateWidgetService extends RemoteViewsService implements Loader.On
     public void onLoadComplete(Loader<Cursor> loader, Cursor data) {
         data.moveToFirst();
         int num = 0;
+        long dat = 0;
         while (!data.isAfterLast()) {
             num = data.getInt(1);
+            dat = Long.parseLong(data.getString(2));
 
             data.moveToNext();
         }
         numOfGymVisits = num;
+        long yourmilliseconds = dat;
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
+        Date resultdate = new Date(yourmilliseconds);
         // Retrieve all of the Today widget ids: these are the widgets we need to update
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this,
@@ -72,7 +80,8 @@ public class UpdateWidgetService extends RemoteViewsService implements Loader.On
         // Add the data to the RemoteViews
         int layoutId = R.layout.gym__pal__widget;
         RemoteViews views = new RemoteViews(getPackageName(), layoutId);
-        views.setTextViewText(R.id.update, String.valueOf(numOfGymVisits));
+        views.setTextViewText(R.id.update,getString(R.string.week_visit) + " : "+String.valueOf(numOfGymVisits)+ "\n"
+        + getString(R.string.last_visit) +" : " + sdf.format(resultdate));
         // Tell the AppWidgetManager to perform an update on the current app widget
         appWidgetManager.updateAppWidget(appWidgetIds, views);
 

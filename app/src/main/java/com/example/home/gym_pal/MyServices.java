@@ -25,7 +25,7 @@ import android.support.v4.content.Loader;
 public class MyServices extends Service implements Loader.OnLoadCompleteListener<Cursor> {
 
 
-    private static final int LOADER_ID_NETWORK = 0 ;
+    private static final int LOADER_ID_NETWORK = 0;
     private int wentToGym;
     private String gymWiFi;
 
@@ -42,7 +42,7 @@ public class MyServices extends Service implements Loader.OnLoadCompleteListener
 
     @Override
     public void onCreate() {
-       CursorLoader mCursorLoader = new CursorLoader(getApplicationContext(), GymProvider.Attendance.CONTENT_URI, null, null, null, null);
+        CursorLoader mCursorLoader = new CursorLoader(getApplicationContext(), GymProvider.Attendance.CONTENT_URI, null, null, null, null);
         mCursorLoader.registerListener(LOADER_ID_NETWORK, this);
         mCursorLoader.startLoading();
     }
@@ -68,7 +68,7 @@ public class MyServices extends Service implements Loader.OnLoadCompleteListener
     public void onLoadComplete(Loader<Cursor> loader, Cursor data) {
         data.moveToFirst();
         int num = 0;
-        while(!data.isAfterLast()){
+        while (!data.isAfterLast()) {
             num = data.getInt(1);
 
             data.moveToNext();
@@ -91,15 +91,13 @@ public class MyServices extends Service implements Loader.OnLoadCompleteListener
 
 
 //                     every time user visits gym increase the counter and save it
-//                        SharedPreferences.Editor editor = getSharedPreferences("GymAttendence", MODE_PRIVATE).edit();
-//                        editor.putInt("wentToGym", wentToGym);
-//                        editor.commit();
+
                         wentToGym++;
                         ContentResolver contentResolver = getContentResolver();
                         ContentValues values = new ContentValues();
-                        values.put(GymColumns.COUNT,wentToGym);
-                        values.put(GymColumns.DATETIME,System.currentTimeMillis());
-                        contentResolver.insert(GymProvider.Attendance.CONTENT_URI,values);
+                        values.put(GymColumns.COUNT, wentToGym);
+                        values.put(GymColumns.DATETIME, System.currentTimeMillis());
+                        contentResolver.insert(GymProvider.Attendance.CONTENT_URI, values);
 
 
                     }

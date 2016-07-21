@@ -14,7 +14,6 @@ public class Gym_Pal_Widget extends AppWidgetProvider {
     private static final String Log_Tag = Gym_Pal_Widget.class.getSimpleName();
 
 
-    private static final String ACTION_CLICK = "ACTION_CLICK";
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -30,7 +29,7 @@ public class Gym_Pal_Widget extends AppWidgetProvider {
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
 
         context.startService(intent);
-//        }
+
     }
 }
 

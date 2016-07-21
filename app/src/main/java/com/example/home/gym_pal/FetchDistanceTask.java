@@ -24,11 +24,11 @@ public class FetchDistanceTask extends AsyncTask<Double, Integer, StringBuilder>
     private RunningActivity runningActivity;
     public AsyncResponse delegate = null;
 
-    public void setOnResponce(AsyncResponse responce){
+    public void setOnResponce(AsyncResponse responce) {
         delegate = responce;
     }
 
-    public FetchDistanceTask(RunningActivity runningActivity){
+    public FetchDistanceTask(RunningActivity runningActivity) {
         this.runningActivity = runningActivity;
     }
 
@@ -53,11 +53,7 @@ public class FetchDistanceTask extends AsyncTask<Double, Integer, StringBuilder>
         final String ROWS = "rows";
         final String ELEMENTS = "elements";
         final String DISTANCE = "distance";
-        final String TEXT = "text";
-        final String VALUE = "value";
         String dis = null;
-        String tex = null;
-        String val = null;
         JSONObject root = new JSONObject(String.valueOf(mJsonResults));
         JSONArray rowsArray = root.getJSONArray(ROWS);
         for (int i = 0; i < rowsArray.length(); i++) {
@@ -68,13 +64,8 @@ public class FetchDistanceTask extends AsyncTask<Double, Integer, StringBuilder>
                 dis = jsonObject.getString(DISTANCE);
 
             }
-
-
         }
-        Log.d("test", " " + dis);
         dist.append(dis);
-        Log.d("test", " " + dist);
-
         return dist;
     }
 
@@ -103,13 +94,12 @@ public class FetchDistanceTask extends AsyncTask<Double, Integer, StringBuilder>
             URL url = new URL(sb.toString());
             mUrlConnection = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(mUrlConnection.getInputStream());
-            Log.i(TAG, "doInBackground of ApiDirectionsAsyncTask" + url);
+
             // Load the results into a StringBuilder
             int read;
             char[] buff = new char[1024];
             while ((read = in.read(buff)) != -1) {
                 mJsonResults.append(buff, 0, read);
-                Log.i(TAG, "doInBackground of ApiDirectionsAsyncTask" + mJsonResults);
             }
 
         } catch (MalformedURLException e) {
@@ -127,18 +117,15 @@ public class FetchDistanceTask extends AsyncTask<Double, Integer, StringBuilder>
         try {
             return getDataFromJson(mJsonResults);
         } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage(), ex);
             ex.printStackTrace();
         }
         return null;
-//        return mJsonResults;
     }
 
     @Override
     protected void onPostExecute(StringBuilder stringBuilder) {
 
         if (stringBuilder != null) {
-//            runningActivity.mText_distance.setText(getString(R.string.latitude_string) + " " + stringBuilder);
             delegate.processFinish(stringBuilder.toString());
         }
 

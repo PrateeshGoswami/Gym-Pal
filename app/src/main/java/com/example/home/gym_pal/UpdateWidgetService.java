@@ -36,11 +36,6 @@ public class UpdateWidgetService extends RemoteViewsService implements Loader.On
 
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
-    }
-
 
     @Nullable
     @Override
@@ -58,7 +53,7 @@ public class UpdateWidgetService extends RemoteViewsService implements Loader.On
     }
 
 
-    @Override
+    @Override 
     public void onLoadComplete(Loader<Cursor> loader, Cursor data) {
         data.moveToFirst();
         int num = 0;

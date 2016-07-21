@@ -36,7 +36,6 @@ public final class GymProvider {
                 path = "attendance",
                 type = "vnd.android.cursor.dir/attendance",
                 defaultSort = GymColumns._ID + " ASC")
-//        public static final Uri ATTENDANCE = Uri.parse("content://" + AUTHORITY + "/attendance");
         public static final Uri CONTENT_URI = buildUri(Path.ATTENDANCE);
     }
 }

@@ -1,6 +1,9 @@
 # Gym-Pal
 An Android Application to stay fit :)
 
+At launch user needs to provide name of the Wifi you want to track it can be your gyms
+or any other where you frequent and want to keep track of 
+
 Key Features
 1. Keeps track of number of times user has visited the gym in the current year.
 2. When was the last visit

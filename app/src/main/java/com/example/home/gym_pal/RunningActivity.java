@@ -30,7 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RunningActivity extends AppCompatActivity implements LocationListener,
@@ -51,17 +51,17 @@ public class RunningActivity extends AppCompatActivity implements LocationListen
     Marker currLocationMarker;
     private LocationManager locationManager;
     private LocationListener locationListener;
-    @Bind(R.id.adView)
+    @BindView(R.id.adView)
     public AdView mAdview;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     public Toolbar mToolbar;
-    @Bind(R.id.start_run)
+    @BindView(R.id.start_run)
     public Button mButton_start;
-    @Bind(R.id.stop_run)
+    @BindView(R.id.stop_run)
     public Button mButton_stop;
-    @Bind(R.id.calc_dist)
+    @BindView(R.id.calc_dist)
     public Button mButton_dist;
-    @Bind(R.id.textview_distance)
+    @BindView(R.id.textview_distance)
     public TextView mText_distance;
 
     @Override

@@ -25,7 +25,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -41,15 +41,15 @@ public class MainActivityFragment extends Fragment implements SensorEventListene
     private SensorManager sensorManager;
     boolean activityRunning;
 
-    @Bind(R.id.step_count)
+    @BindView(R.id.step_count)
     public TextView mText_count;
-    @Bind(R.id.step_count_today)
+    @BindView(R.id.step_count_today)
     public TextView mText_count_today;
-    @Bind(R.id.avg_steps)
+    @BindView(R.id.avg_steps)
     public TextView mText_avg;
-    @Bind(R.id.last_visit)
+    @BindView(R.id.last_visit)
     public TextView mText_last;
-    @Bind(R.id.week_visit)
+    @BindView(R.id.week_visit)
     public TextView mText_week;
 
     private static final int CURSOR_LOADER_ID = 0;

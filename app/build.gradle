@@ -12,9 +12,16 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'gymReleaseKey'
+            keyPassword 'password'
+            storeFile file("$rootDir/keystore.jks")
+            storePassword 'password'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
     defaultConfig {
         applicationId "com.example.home.gym_pal"
         minSdkVersion 15
@@ -22,11 +29,13 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -44,6 +53,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
     apt 'net.simonvt.schematic:schematic-compiler:0.6.7'
     compile 'net.simonvt.schematic:schematic:0.6.7'
-
 }
 apply plugin: 'com.google.gms.google-services'

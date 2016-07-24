@@ -1,8 +1,8 @@
 # Gym-Pal
 An Android Application to stay fit :)
 
-At launch user needs to provide name of the Wifi you want to track it can be your gyms
-or any other where you frequent and want to keep track of 
+At launch user needs to provide name of the Wifi he or she  wants to track it can be your gyms
+or any other place one frequents and want to keep track of.It can be later changed through settings.
 
 Key Features
 1. Keeps track of number of times user has visited the gym in the current year.

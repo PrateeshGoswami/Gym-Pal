@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -39,13 +39,13 @@
         <service android:name=".MyServices" />
 
         <activity
-            android:name=".RunningActivity"
+            android:name=".Activities.RunningActivity"
             android:label="@string/title_activity_running"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.home.gym_pal.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
 
         <provider
@@ -76,12 +76,12 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.home.gym_pal.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
     </application>
 

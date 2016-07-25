@@ -22,6 +22,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.home.gym_pal.Activities.RunningActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

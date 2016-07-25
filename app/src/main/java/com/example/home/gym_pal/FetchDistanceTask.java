@@ -3,6 +3,8 @@ package com.example.home.gym_pal;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.home.gym_pal.Activities.RunningActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

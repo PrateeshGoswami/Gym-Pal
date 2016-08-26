@@ -1,4 +1,6 @@
 # Gym-Pal
+<img src="https://cloud.githubusercontent.com/assets/13324542/17388831/9ee673ee-59b3-11e6-99e9-1f3d3443ab18.png" width="180">
+<img src="https://cloud.githubusercontent.com/assets/13324542/17388832/9ef96a30-59b3-11e6-8c32-2913aedcae72.png" width="180">
 An Android Application to stay fit :)
 
 At launch user needs to provide name of the Wifi he or she  wants to track it can be your gyms
